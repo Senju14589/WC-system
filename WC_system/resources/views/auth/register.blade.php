@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <img src="{{asset('image/logowc.png')}}" width="200"/>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -55,6 +55,7 @@
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
+            <a href="{{ route('login') }}" class="link-primary">ถ้ามีบัญชีอยู่แล้ว คลิ๊ก!</a>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
