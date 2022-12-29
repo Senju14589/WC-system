@@ -1,25 +1,32 @@
 <x-guest-layout>
-    <div class="container mt-12" Align=center>
+    <div class="container mt-10" align=center>
         <div class="py-12">
-            <div class="card mb-3">
-                <img src="{{ asset('image/test.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h3 class="fs-2">ตำแหน่งปัจจุบันของคุณ</h3>
+            <br>
+            <div class="container">
+                <div class="card">
+                    <div id="map"></div>
                 </div>
             </div>
-
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="..." class="img-fluid rounded-start" alt="...">
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="container" Align=center>
+        <div class="py-12">
+            <div class="container">
+                <div class="card-group">
+                    <div class="col-sm-6 mt-3">
+                        <div class="btn text-white bg-success " style="width: 18rem;">
+                            <div class="card-body">
+                                <a herf="#" class="card-title">CHECK IN</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <button class="btn btn-primary btn-lg">Large button</button>
+                    <div class="col-sm-6 mt-3">
+                        <div class="btn text-black bg-warning " style="width: 18rem;">
+                            <div class="card-body">
+                                <a herf="#" class="card-title">WORK FOR HOME</a>
+                            </div>
                         </div>
                     </div>
                 </div>

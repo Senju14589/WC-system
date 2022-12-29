@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/', function () {
         return redirect()->route('login');
     });
+    Route::post('/employee/add', [EmployeeController::class, 'store'])->name('addEmployee');
 });
 
 Route::get('/index', function () {
@@ -31,6 +34,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $employee = DB::table('employees')->get();
+        return view('dashboard', compact('employee'));
     })->name('dashboard');
 });
