@@ -3,7 +3,7 @@
         <div class="col">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 สวัสดีคุณ : {{ Auth::user()->name }}
-                <p>จำนวนพนักงาน :</p>
+                <p>จำนวนพนักงาน : {{ count($employee) }} คน</p>
             </h2>
         </div>
     </x-slot>
@@ -20,6 +20,26 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+        @error('name')
+            <div class="my-2">
+                <span class="text-danger">{{ $message }}</span>
+            </div>
+        @enderror
+        @error('code')
+            <div class="my-2">
+                <span class="text-danger">{{ $message }}</span>
+            </div>
+        @enderror
+        @error('position')
+            <div class="my-2">
+                <span class="text-danger">{{ $message }}</span>
+            </div>
+        @enderror
+        @error('phone')
+            <div class="my-2">
+                <span class="text-danger">{{ $message }}</span>
+            </div>
+        @enderror
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -28,16 +48,15 @@
                         <p class="fs-3">พนักงาน</p>
                         <div class="row align-items-center mt-3">
                             <div class="row">
-                                <div class="col-xl-3 col-sm-6">
-                                    <div class="card">
-                                        @foreach ($employee as $row)
+                                @foreach ($employee as $row)
+                                    <div class="col-xl-3 col-sm-6">
+                                        <div class="card">
                                             <div class="card-body">
                                                 <div class="dropdown float-end">
                                                     <a class="text-muted dropdown-toggle font-size-16" href="#"
                                                         role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i
                                                             class="bx bx-dots-horizontal-rounded"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-end"><a
-                                                            class="dropdown-item" href="#">แก้ไข</a><a
                                                             class="dropdown-item" href="#">ลบ</a></div>
                                                 </div>
                                                 <div class="d-flex align-items-center">
@@ -48,8 +67,8 @@
                                                         <h5 class="font-size-16 mb-1"><a href="#"
                                                                 class="text-dark">{{ $row->name }}</a>
                                                         </h5>
-                                                        <span class="badge badge-soft-success mb-0">Full Stack
-                                                            Developer</span>
+                                                        <span
+                                                            class="badge badge-soft-success mb-0">{{ $row->position }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="mt-3 pt-1">
@@ -64,13 +83,13 @@
                                                     </p>
                                                 </div>
                                                 <div class="d-flex gap-2 pt-4">
-                                                    <button type="button" class="btn btn-primary"><i
-                                                            class="bx bx-message-square-dots me-1"></i>ประวัติการเข้างาน</button>
+                                                    <a href="{{ url('/employee/all/' . $row->id) }}"
+                                                        class="btn btn-primary">ประวัติการเข้างาน</a>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

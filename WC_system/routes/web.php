@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         return redirect()->route('login');
     });
     Route::post('/employee/add', [EmployeeController::class, 'store'])->name('addEmployee');
+    Route::get('/employee/all/{id}', [EmployeeController::class, 'index']);
 });
 
 Route::get('/index', function () {
