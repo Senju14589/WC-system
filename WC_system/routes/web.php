@@ -26,6 +26,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 Route::get('/index', function () {
     return view('member.index');
 });
+Route::get('/checkin', function () {
+    return view('member.checkin');
+});
 
 
 

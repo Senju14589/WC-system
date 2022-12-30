@@ -18,7 +18,7 @@
                     <div class="col-sm-6 mt-3">
                         <div class="btn text-white bg-success " style="width: 18rem;">
                             <div class="card-body">
-                                <a herf="#" class="card-title">CHECK IN</a>
+                                <a herf="{{ }}" class="card-title">CHECK IN</a>
                             </div>
                         </div>
                     </div>
