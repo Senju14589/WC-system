@@ -16,18 +16,10 @@
             <div class="container">
                 <div class="card-group">
                     <div class="col-sm-6 mt-3">
-                        <div class="btn text-white bg-success " style="width: 18rem;">
-                            <div class="card-body">
-                                <a herf="{{ }}" class="card-title">CHECK IN</a>
-                            </div>
-                        </div>
+                        <a href="{{ url('/checkin') }}" class="btn btn-primary btn-lg"> CHECK IN </a>
                     </div>
                     <div class="col-sm-6 mt-3">
-                        <div class="btn text-black bg-warning " style="width: 18rem;">
-                            <div class="card-body">
-                                <a herf="#" class="card-title">WORK FOR HOME</a>
-                            </div>
-                        </div>
+                        <a href="{{ url('/checkin') }}" class="btn btn-warning btn-lg"> WORK FOR HOME </a>
                     </div>
                 </div>
             </div>

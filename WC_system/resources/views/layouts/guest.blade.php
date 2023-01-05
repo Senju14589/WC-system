@@ -50,7 +50,6 @@
             overflow: hidden;
             height: 100%;
             padding: 0;
-            margin-top: 150px;
         }
 
         .lc-block {
@@ -108,7 +107,7 @@
         }
 
         .lcb-lockscreen .lcbl-btn {
-            background-color: #2196F3;
+            background-color: #0089fa;
             position: absolute;
             top: 0;
             right: 0;
@@ -266,14 +265,14 @@
         .btn-primary:hover,
         .open>.dropdown-toggle.btn-primary {
             color: #fff;
-            background-color: #1791f2;
-            border-color: #0d87e9;
+            background-color: #008cff;
+            border-color: #008cff;
         }
 
         .btn-primary {
             color: #fff;
-            background-color: #2196f3;
-            border-color: #0d8aee;
+            background-color: #008cff;
+            border-color: #008cff;
         }
     </style>
 </head>

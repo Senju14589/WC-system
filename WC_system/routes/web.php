@@ -29,6 +29,9 @@ Route::get('/index', function () {
 Route::get('/checkin', function () {
     return view('member.checkin');
 });
+Route::get('/wfh', function () {
+    return view('member.wfh');
+});
 
 
 
