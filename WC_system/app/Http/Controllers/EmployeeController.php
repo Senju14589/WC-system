@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -44,5 +45,20 @@ class EmployeeController extends Controller
         DB::table("employees")->insert($data);
 
         return redirect()->back()->with('success', "บันทึกข้อมูลเรียบร้อย");
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = employee::findOrFail($id);
+        $post->update($request->only(['name', 'code', 'position', 'phone']));
+
+        return redirect()->back()->with('success', "อัพเดตเรียบร้อย");
+    }
+
+    public function delete($id)
+    {
+        $post = employee::findOrFail($id);
+        $post->delete();
+        return redirect()->route('dashboard')->with('success', "ลบข้อมูลถาวรเรียบร้อย");
     }
 }

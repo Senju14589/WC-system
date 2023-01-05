@@ -19,7 +19,7 @@
                         <a href="{{ url('/checkin') }}" class="btn btn-primary btn-lg"> CHECK IN </a>
                     </div>
                     <div class="col-sm-6 mt-3">
-                        <a href="{{ url('/checkin') }}" class="btn btn-warning btn-lg"> WORK FOR HOME </a>
+                        <a href="{{ url('/wfh') }}" class="btn btn-warning btn-lg"> WORK FOR HOME </a>
                     </div>
                 </div>
             </div>

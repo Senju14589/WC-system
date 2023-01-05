@@ -10,6 +10,9 @@
     <div class="container">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="container">
                         <div class="card-body">
@@ -46,7 +49,8 @@
                                                     data-bs-target="#staticBackdrop">
                                                     แก้ไขข้อมูล
                                                 </button>
-                                                <a href="#" class="btn btn-danger">ลบพนักงาน</a>
+                                                <a href="{{ url('/employee/delete/' . $employee->id) }}"
+                                                    class="btn btn-danger">ลบพนักงาน</a>
                                             </div>
                                         </div>
                                     </div>
@@ -102,7 +106,7 @@
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{ route('addEmployee') }}" method="post">
+        <form action="{{ url('/employee/update/' . $employee->id) }}" method="post">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -117,22 +121,22 @@
                                 <div class="form-group">
                                     <label>ชื่อพนักงาน</label>
                                     <input class="form-control form-control-lg" type="text" name="name"
-                                        placeholder="{{ $employee->name }}">
+                                        value="{{ $employee->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label>รหัสพนักงาน</label>
                                     <input class="form-control form-control-lg" type="text" name="code"
-                                        placeholder="{{ $employee->code }}">
+                                        value="{{ $employee->code }}">
                                 </div>
                                 <div class="form-group">
                                     <label>ตำแหน่งงาน</label>
                                     <input class="form-control form-control-lg" type="text" name="position"
-                                        placeholder="{{ $employee->position }}">
+                                        value="{{ $employee->position }}">
                                 </div>
                                 <div class="form-group">
                                     <label>เบอร์โทรศัพท์</label>
                                     <input class="form-control form-control-lg" type="text"
-                                        name="phone"placeholder="{{ $employee->phone }}">
+                                        name="phone"value="{{ $employee->phone }}">
                                 </div>
 
                             </div>
@@ -141,7 +145,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-primary">ตกลง</button>
+                    <button type="submit" class="btn btn-primary">อัพเดต</button>
                 </div>
         </form>
     </div>

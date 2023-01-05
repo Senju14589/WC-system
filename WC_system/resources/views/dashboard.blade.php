@@ -3,7 +3,6 @@
         <div class="col">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 สวัสดีคุณ : {{ Auth::user()->name }}
-                <p>จำนวนพนักงาน : {{ count($employee) }} คน</p>
             </h2>
         </div>
     </x-slot>
@@ -46,6 +45,7 @@
                 <div class="container">
                     <div class="card-body">
                         <p class="fs-3">พนักงาน</p>
+                        <p>จำนวนพนักงาน : {{ count($employee) }} คน</p>
                         <div class="row align-items-center mt-3">
                             <div class="row">
                                 @foreach ($employee as $row)

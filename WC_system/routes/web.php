@@ -21,6 +21,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     });
     Route::post('/employee/add', [EmployeeController::class, 'store'])->name('addEmployee');
     Route::get('/employee/all/{id}', [EmployeeController::class, 'index']);
+    Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
+    Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete']);
 });
 
 Route::get('/index', function () {
