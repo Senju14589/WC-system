@@ -35,6 +35,8 @@ Route::get('/wfh', function () {
     return view('member.wfh');
 });
 
+Route::get('/checkin/normal', [EmployeeController::class, 'check_login'])->name('normal');
+
 
 
 Route::middleware([

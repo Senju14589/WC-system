@@ -14,9 +14,12 @@
     <div class="container" Align=center>
         <div class="py-12">
             <div class="container">
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
                 <div class="card-group">
                     <div class="col-sm-6 mt-3">
-                        <a href="{{ url('/checkin') }}" class="btn btn-primary btn-lg"> CHECK IN </a>
+                        <a href="{{ route('normal') }}" class="btn btn-primary btn-lg"> CHECK IN </a>
                     </div>
                     <div class="col-sm-6 mt-3">
                         <a href="{{ url('/wfh') }}" class="btn btn-warning btn-lg"> WORK FOR HOME </a>

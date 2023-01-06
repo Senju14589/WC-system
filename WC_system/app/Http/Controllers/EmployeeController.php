@@ -61,4 +61,24 @@ class EmployeeController extends Controller
         $post->delete();
         return redirect()->route('dashboard')->with('success', "ลบข้อมูลถาวรเรียบร้อย");
     }
+
+    public function check_login()
+    {
+
+        $minLat = 16.45571346138386;
+        $maxLat = 16.45584241403521;
+        $minLng = 102.81952262321487;
+        $maxLng = 102.81971500489436;
+
+        function checkLocation($lat, $lng)
+        {
+            global $minLat, $maxLat, $minLng, $maxLng;
+
+            if ($lat >= $minLat && $lat <= $maxLat && $lng >= $minLng && $lng <= $maxLng) {
+                return view('member.checkin');
+            } else {
+                return redirect()->back()->with('success', "คุณไม่ได้อยู่ในสถานที่ทำงาน");
+            }
+        }
+    }
 }
