@@ -6,13 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "geocoder-php/google-maps-provider": "^4.7",
+        "geocoder/geocoder": "^1.4",
         "guzzlehttp/guzzle": "^7.2",
         "laravel-views/laravel-views": "^2.4",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.13",
-        "laravel/sanctum": "^3.0",
+        "laravel/sanctum": "^3.1",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "nyholm/psr7": "^1.5",
+        "php-http/curl-client": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
