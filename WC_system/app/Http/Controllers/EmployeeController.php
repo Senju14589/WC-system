@@ -6,7 +6,7 @@ use App\Models\employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Geocoder\Geocoder;
+use Geocoder\Laravel\ProviderAndDumperAggregator as Geocoder;
 
 class EmployeeController extends Controller
 {
@@ -65,24 +65,6 @@ class EmployeeController extends Controller
 
     public function check_login(Request $request)
     {
-        $geocoder = new Geocoder();
-        $ip = $request->ip();
-        $location = $geocoder->geocode($ip)->first();
-
-        $minLat = 16.45571346138386;
-        $maxLat = 16.45584241403521;
-        $minLng = 102.81952262321487;
-        $maxLng = 102.81971500489436;
-
-        if (
-            $location->getLatitude() > $minLat && $location->getLatitude() < $maxLat &&
-            $location->getLongitude() > $minLng && $location->getLongitude() < $maxLng
-        ) {
-            // Allow access to the login page
-            return view('member.checkin');
-        } else {
-            // Display an error message
-            return response('You are not in the allowed location.', 403);
-        }
+        return view('member.checkin');
     }
 }

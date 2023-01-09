@@ -17,16 +17,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://api.longdo.com/map/?key=493288c90d5c7a95cdcb47755ece25bf"></script>
-    <script>
-        function init() {
-            var map;
-            map = new longdo.Map({
-                placeholder: document.getElementById('map')
-            });
-            map.Layers.setBase(longdo.Layers.NORMAL);
-            map.location(longdo.LocationMode.Geolocation);
-        }
-    </script>
+
 
     <!-- styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -283,6 +274,18 @@
         {{ $slot }}
     </div>
     @laravelViewsScripts
+
+    <script>
+        function init() {
+            var map;
+            map = new longdo.Map({
+                placeholder: document.getElementById('map')
+            });
+            map.Layers.setBase(longdo.Layers.NORMAL);
+            map.location(longdo.LocationMode.Geolocation);
+        }
+    </script>
+
 </body>
 
 </html>
