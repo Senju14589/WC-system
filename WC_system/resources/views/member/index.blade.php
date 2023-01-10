@@ -39,8 +39,8 @@
             navigator.geolocation.getCurrentPosition(function(position) {
                 var lat1 = position.coords.latitude;
                 var lon1 = position.coords.longitude;
-                var lat2 = 16.45576013923571;
-                var lon2 = 102.81952709756617;
+                var lat2 = 16.455719331499942;
+                var lon2 = 102.81952843819222;
                 var distance = calculateDistance(lat1, lon1, lat2, lon2);
 
                 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -56,16 +56,16 @@
                         Math.sin(dLon / 2) * Math.sin(dLon / 2);
                     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                     var d = R * c; // Distance in km
-                    return d;
+                    return d * 1000;
                 }
-                if (distance <= 500) {
+                if (distance <= 40) {
                     // The user is within 500 meters of the designated location
                     // Do something (such as redirecting the user to a different page)
                     window.location.href = '/checkin';
                 } else {
                     // The user is not within 500 meters of the designated location
                     // Do something else (such as displaying an error message)
-                    x.innerHTML = "You are not in the allowed location.";
+                    x.innerHTML = "คุณอยู่นอกพื้นที่ที่ทำงาน ไม่สามารถเข้าCheck IN ได้ ";
                 }
             });
         } else {
