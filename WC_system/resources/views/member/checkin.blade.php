@@ -8,20 +8,22 @@
 <x-guest-layout>
     <div class="center">
         <div class="container">
-            <div class="card text-center">
-                <div class="card-header">
-                    กรอกรหัสพนักงาน
-                </div>
-                <div class="card-body">
-                    <center><img src="{{ url('image/wc.png') }}"class="rounded-circle text-center" alt=""
-                            width="120px"></center>
-                    <br>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="รหัสพนักงาน">
+            <form action="" method="post" enctype="multipart/form">
+                <div class="card text-center">
+                    <div class="card-header">
+                        กรอกรหัสพนักงาน
                     </div>
-                    <a href="#" class="btn btn-primary">CHECK IN</a>
+                    <div class="card-body">
+                        <center><img src="{{ url('image/wc.png') }}"class="rounded-circle text-center" alt=""
+                                width="120px"></center>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="รหัสพนักงาน" name="password">
+                        </div>
+                        <a href="{{ route('normal') }}" class="btn btn-primary">CHECK IN</a>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </x-guest-layout>
