@@ -8,7 +8,8 @@
 <x-guest-layout>
     <div class="center">
         <div class="container">
-            <form action="" method="post" enctype="multipart/form">
+            <form action="" method="post">
+                @csrf
                 <div class="card text-center">
                     <div class="card-header">
                         กรอกรหัสพนักงาน

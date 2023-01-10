@@ -8,7 +8,8 @@
 <x-guest-layout>
     <div class="center">
         <div class="container">
-            <form action="" method="post" enctype="multipart/form">
+            <form action="{{ route('normal') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="card text-center">
                     <div class="card-header">
                         กรอกรหัสพนักงาน
@@ -18,9 +19,10 @@
                                 width="120px"></center>
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="รหัสพนักงาน" name="password">
+                            <input type="text" class="form-control" placeholder="รหัสพนักงาน" id="password"
+                                name="password">
                         </div>
-                        <a href="{{ route('normal') }}" class="btn btn-primary">CHECK IN</a>
+                        <button type="submit" class="btn btn-primary">CHECK IN</button>
                     </div>
                 </div>
             </form>

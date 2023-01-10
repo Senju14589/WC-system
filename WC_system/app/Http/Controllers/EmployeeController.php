@@ -21,7 +21,7 @@ class EmployeeController extends Controller
         //ตรวจสอบข้อมูล
         $request->validate(
             [
-                'name' => 'required|unique:employees|max:255',
+                'name' => 'required|max:255',
                 'code' => 'required|unique:employees',
                 'position' => 'required',
                 'phone' => 'required|unique:employees',
@@ -29,7 +29,7 @@ class EmployeeController extends Controller
             [
                 'name.required' => "กรุณาป้อนชื่อของพนักงานด้วยครับ",
                 'name.max' => "ห้ามป้อนเกิน 255 ตัวอักษร",
-                'name.unique' => "มีชื่อของพนักงานคนนี้ในฐานข้อมูลแล้ว",
+
                 'code.required' => "กรุณาป้อนรหัสของพนักงานด้วยครับ",
                 'code.unique' => "มีรหัสของพนักงานคนนี้ในฐานข้อมูลแล้ว",
                 'position.required' => "กรุณาป้อนตำแหน่งของพนักงานด้วยครับ",
@@ -65,6 +65,25 @@ class EmployeeController extends Controller
 
     public function check_login(Request $request)
     {
-        return view('member.checkin');
+        $employeedata = employee::where('code', $request->password)->first();
+
+        if ($employeedata) {
+
+            dd($employeedata->id);
+
+            $data = array();
+            DB::table("addrooms")->insert($data);
+            return redirect()->back()->with('success', "บันทึกเข้างาน เรียบร้อยแล้ว.");
+        } else {
+            $data = array();
+            $data["nameroom"] = $request->nameroom;
+            $data["dateroom"] = $request->dateroom;
+            $data["timeroom"] = $request->timeroom;
+            $data["endtimeroom"] = $request->endtimeroom;
+            $data["user_id"] = Auth::user()->id;
+
+            DB::table("addrooms")->insert($data);
+            return redirect()->route('meeting')->with('success', "บันทึกข้อมูลเรียบร้อย");
+        }
     }
 }
