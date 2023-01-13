@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\employee;
+use App\Models\Timecheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Geocoder\Laravel\ProviderAndDumperAggregator as Geocoder;
 
 class EmployeeController extends Controller
 {
     public function index($id)
     {
-        $employee = employee::where('id', $id)->first();
+        $employee = Employee::with('timechecks')->find($id);
         return view('admin.profile', compact('employee'));
     }
+
 
     public function store(Request $request)
     {
@@ -65,25 +66,16 @@ class EmployeeController extends Controller
 
     public function check_login(Request $request)
     {
-        $employeedata = employee::where('code', $request->password)->first();
-
+        $employeedata = Employee::where('code', $request->password)->first();
         if ($employeedata) {
-
-            dd($employeedata->id);
-
-            $data = array();
-            DB::table("addrooms")->insert($data);
+            $timecheck = new Timecheck();
+            $timecheck->employee_id = $employeedata->id;
+            $timecheck->location = $request->lat . ', ' . $request->lon;
+            $timecheck->status = $request->status;
+            $timecheck->save();
             return redirect()->back()->with('success', "บันทึกเข้างาน เรียบร้อยแล้ว.");
         } else {
-            $data = array();
-            $data["nameroom"] = $request->nameroom;
-            $data["dateroom"] = $request->dateroom;
-            $data["timeroom"] = $request->timeroom;
-            $data["endtimeroom"] = $request->endtimeroom;
-            $data["user_id"] = Auth::user()->id;
-
-            DB::table("addrooms")->insert($data);
-            return redirect()->route('meeting')->with('success', "บันทึกข้อมูลเรียบร้อย");
+            return redirect()->back()->with('success', "ไม่พบพนักงานในระบบ กรุณาตรวจสอบรหัสพนักงาน.");
         }
     }
 }

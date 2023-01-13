@@ -15,4 +15,17 @@ class employee extends Model
         'phone',
         'position'
     ];
+
+    public function timechecks()
+    {
+        return $this->hasMany(Timecheck::class);
+    }
+}
+
+class Timecheck extends Model
+{
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }

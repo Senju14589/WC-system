@@ -69,24 +69,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>30/12/2565</td>
-                                                        <td>08:25</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>05/01/2566</td>
-                                                        <td>08:20</td>
-                                                        <td class="text-danger">WFH</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>06/01/2566</td>
-                                                        <td>08:19</td>
-                                                        <td></td>
-                                                    </tr>
+                                                    @foreach ($employee->timechecks as $timecheck)
+                                                        <tr>
+                                                            <th scope="row">{{ $loop->iteration }}</th>
+                                                            <td>{{ $timecheck->created_at->setTimezone('Asia/Bangkok')->toDateString() }}
+                                                            </td>
+                                                            <td>{{ $timecheck->created_at->setTimezone(config('app.timezone'))->toTimeString() }}
+                                                            </td>
+                                                            <td class="text-danger">{{ $timecheck->status }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

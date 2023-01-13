@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('timechecks', function (Blueprint $table) {
             $table->id();
             $table->integer('employee_id');
-            $table->float('location');
-            $table->string('check_image');
-            $table->timestamps();
+            $table->point('location')->nullable();
+            $table->string('status');
+            $table->timestamp('created_at')->useCurrent()->setTimeFormat('H:i:s');
         });
     }
 
@@ -29,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timechecks');
+        Schema::table('timechecks', function (Blueprint $table) {
+            $table->dropColumn('location');
+        });
     }
 };
