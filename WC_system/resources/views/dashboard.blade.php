@@ -4,10 +4,16 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 สวัสดีคุณ : {{ Auth::user()->name }}
             </h2>
+
         </div>
     </x-slot>
 
     <div class="container">
+        <div class="mt-6" align="center">
+            <p>เพื่อความสะดวกในการรับการแจ้งเตือนการเข้างานของพนักงาน กรุณา Add Line Notify <button
+                    class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">คลิ๊ก!!</button></p>
+
+        </div>
         <div class="py-12" align="right">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -18,6 +24,9 @@
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
         @error('name')
             <div class="my-2">
@@ -52,15 +61,8 @@
                                     <div class="col-xl-3 col-sm-6">
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="dropdown float-end">
-                                                    <a class="text-muted dropdown-toggle font-size-16" href="#"
-                                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i
-                                                            class="bx bx-dots-horizontal-rounded"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end"><a
-                                                            class="dropdown-item" href="#">ลบ</a></div>
-                                                </div>
                                                 <div class="d-flex align-items-center">
-                                                    <div><img src="{{ url('image/on.png') }}" alt=""
+                                                    <div><img src="{{ url('image/employee.png') }}" alt=""
                                                             class="avatar-md rounded-circle img-thumbnail" />
                                                     </div>
                                                     <div class="flex-1 ms-3">
@@ -97,8 +99,28 @@
             </div>
         </div>
     </div>
+    <br><br><br>
 
 </x-app-layout>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Qr Code Line Notify</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <center><img src="{{ url('image/lineNotify.jpg') }}" alt="" width="300px" />
+                </center>
+                <center>เพื่อความสะดวกในการรับการแจ้งเตือนการเข้างานของพนักงาน กรุณา Add Line Notify </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -124,7 +146,7 @@
                                 <div class="form-group">
                                     <label>รหัสพนักงาน</label>
                                     <input class="form-control form-control-lg" type="text" name="code"
-                                        placeholder="ระบุรหัสพนักงาน">
+                                        maxlength="3" placeholder="ระบุรหัสพนักงาน">
                                 </div>
                                 <div class="form-group">
                                     <label>ตำแหน่งงาน</label>
@@ -133,8 +155,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>เบอร์โทรศัพท์</label>
-                                    <input class="form-control form-control-lg" type="text"
-                                        name="phone"placeholder="ระบุเบอร์ติดต่อ">
+                                    <input class="form-control form-control-lg" type="text" name="phone"
+                                        maxlength="11" placeholder="ระบุเบอร์ติดต่อ">
                                 </div>
 
                             </div>

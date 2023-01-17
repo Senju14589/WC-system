@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('timechecks', function (Blueprint $table) {
             $table->id();
             $table->integer('employee_id');
-            $table->point('location')->nullable();
+            $table->string('location')->nullable();
             $table->string('status');
             $table->timestamp('created_at')->useCurrent()->setTimeFormat('H:i:s');
         });

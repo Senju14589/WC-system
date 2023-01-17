@@ -22,7 +22,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
-                                                <div><img src="{{ url('image/on.png') }}" alt=""
+                                                <div><img src="{{ url('image/employee.png') }}" alt=""
                                                         class="avatar-md rounded-circle img-thumbnail" />
                                                 </div>
                                                 <div class="flex-1 ms-3">
@@ -49,8 +49,10 @@
                                                     data-bs-target="#staticBackdrop">
                                                     แก้ไขข้อมูล
                                                 </button>
-                                                <a href="{{ url('/employee/delete/' . $employee->id) }}"
-                                                    class="btn btn-danger">ลบพนักงาน</a>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">
+                                                    ลบข้อมูล
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -59,7 +61,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <p class="fs-3">ตารางแสดงการเข้างาน</p>
-                                            <table class="table">
+                                            <table class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">ลำดับ</th>
@@ -69,18 +71,18 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($employee->timechecks as $timecheck)
+                                                    @foreach ($timechecks as $timecheck)
                                                         <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                            <td>{{ $timecheck->created_at->setTimezone('Asia/Bangkok')->toDateString() }}
-                                                            </td>
-                                                            <td>{{ $timecheck->created_at->setTimezone(config('app.timezone'))->toTimeString() }}
-                                                            </td>
+                                                            <th scope="row">
+                                                                {{ $timechecks->firstItem() + $loop->index }}</th>
+                                                            <td>{{ $timecheck->created_at->format('d-m-Y') }}</td>
+                                                            <td>{{ $timecheck->created_at->format('H:i') }} น.</td>
                                                             <td class="text-danger">{{ $timecheck->status }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
+                                            {{ $timechecks->links() }}
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +95,26 @@
     </div>
 
 </x-app-layout>
-
+<!--ปุ่มลบ -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">ลบข้อมูลพนักงาน</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <center><img src="{{ url('image/error.png') }}" alt="" width="120px" />
+                </center>
+                <center>คณต้องการจะลบพนักงานคนนี้จริงๆใช่ไหม?</center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                <a href="{{ url('/employee/delete/' . $employee->id) }}" class="btn btn-danger">ลบพนักงาน</a>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -102,7 +123,7 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">เพิ่มพนักงาน</h5>
+                    <h3 class="modal-title" id="staticBackdropLabel">เพิ่มพนักงาน</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -118,7 +139,7 @@
                                 <div class="form-group">
                                     <label>รหัสพนักงาน</label>
                                     <input class="form-control form-control-lg" type="text" name="code"
-                                        value="{{ $employee->code }}">
+                                        maxlength="3" value="{{ $employee->code }}">
                                 </div>
                                 <div class="form-group">
                                     <label>ตำแหน่งงาน</label>
@@ -127,7 +148,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>เบอร์โทรศัพท์</label>
-                                    <input class="form-control form-control-lg" type="text"
+                                    <input class="form-control form-control-lg" type="text" maxlength="11"
                                         name="phone"value="{{ $employee->phone }}">
                                 </div>
 
@@ -137,7 +158,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-primary">อัพเดต</button>
+                    <button type="submit" class="btn btn-success">อัพเดต</button>
                 </div>
         </form>
     </div>

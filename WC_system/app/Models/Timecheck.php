@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use App\Models\setTimezone;
+
 
 class Timecheck extends Model
 {
@@ -21,17 +21,12 @@ class Timecheck extends Model
     {
         return $this->belongsTo(Employee::class);
     }
-
-    public function getCreatedAtAttribute($value)
-    {
-        return Carbon::parse($value)->setTimezone(config('app.timezone'))->toDateTimeString();
-    }
 }
 
 class Employee extends Model
 {
-    public function timechecks()
+    public function timechecks($value)
     {
-        return $this->hasMany(Timecheck::class);
+        return Carbon::parse($value)->setTimezone(config('app.timezone'))->toDateTimeString();
     }
 }

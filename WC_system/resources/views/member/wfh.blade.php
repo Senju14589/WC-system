@@ -22,8 +22,8 @@
                             <input type="hidden" name="lat" id="lat" value="">
                             <input type="hidden" name="lon" id="lon" value="">
                             <input type="hidden" name="status" id="status" value="WFH">
-                            <input type="text" class="form-control" placeholder="รหัสพนักงาน" id="password"
-                                name="password">
+                            <input type="text" class="form-control" maxlength="3" placeholder="รหัสพนักงาน"
+                                id="password" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary">เข้างาน</button>
                     </div>
@@ -31,6 +31,9 @@
             </form>
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
         </div>
     </div>
