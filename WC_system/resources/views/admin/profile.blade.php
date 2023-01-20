@@ -67,6 +67,7 @@
                                                         <th scope="col">ลำดับ</th>
                                                         <th scope="col">วันที่</th>
                                                         <th scope="col">เวลาเข้างาน</th>
+                                                        <th scope="col">ประเภท</th>
                                                         <th scope="col">หมายเหตุ</th>
                                                     </tr>
                                                 </thead>
@@ -78,6 +79,8 @@
                                                             <td>{{ $timecheck->created_at->format('d-m-Y') }}</td>
                                                             <td>{{ $timecheck->created_at->format('H:i') }} น.</td>
                                                             <td class="text-danger">{{ $timecheck->status }}</td>
+                                                            <td class="text-white bg-warning">{{ $timecheck->note }}
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

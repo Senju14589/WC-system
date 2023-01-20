@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('employee_id');
             $table->string('location')->nullable();
             $table->string('status');
+            $table->string('note');
             $table->timestamp('created_at')->useCurrent()->setTimeFormat('H:i:s');
         });
     }

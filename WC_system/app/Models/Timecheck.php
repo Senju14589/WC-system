@@ -14,7 +14,8 @@ class Timecheck extends Model
     protected $fillable = [
         'employee_id',
         'location',
-        'status'
+        'status',
+        'note'
     ];
 
     public function employee()

@@ -19,7 +19,7 @@
                 @endif
                 <div class="card-group">
                     <div class="col-sm-6 mt-3">
-                        <button onclick="getLocation()" class="btn btn-primary btn-lg"> CHECK IN </button>
+                        <button onclick="getLocation()" class="btn btn-primary btn-lg"> NORMAL </button>
                     </div>
                     <div class="col-sm-6 mt-3">
                         <a href="{{ url('/wfh') }}" class="btn btn-warning btn-lg"> WORK FOR HOME </a>

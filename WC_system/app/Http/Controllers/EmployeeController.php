@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
@@ -72,12 +73,19 @@ class EmployeeController extends Controller
             $timecheck->employee_id = $employeedata->id;
             $timecheck->location = $request->lat . ', ' . $request->lon;
             $timecheck->status = $request->status;
+            $created_at = Carbon::now();
+            if ($created_at->format('H:i:s') < "08:30:00") {
+                $timecheck->note = "เข้าตรงเวลา";
+            } else {
+                $timecheck->note = "มาสาย";
+            }
             $timecheck->save();
             // retrieve employee name
             $employeeName = $timecheck->employee->name;
             $created_at = $timecheck->created_at->format('H:i');
             $status = $timecheck->status;
             $date = $timecheck->created_at->format('d-m-Y');
+            $note = $timecheck->note;
 
             // Send notification to Line Notify
             $client = new Client();
@@ -87,7 +95,8 @@ class EmployeeController extends Controller
                     'Content-Type' => 'application/x-www-form-urlencoded',
                 ],
                 'form_params' => [
-                    'message' => "\nวันที่ : " . $date . "\nชื่อพนักงาน : " . $employeeName . "\nเวลาเข้างาน: " . $created_at . 'น.' . "\nเข้างานแบบ: " . $status,
+                    'message' => "\nวันที่ : " . $date . "\nชื่อพนักงาน : " . $employeeName . "\nเวลาเข้างาน: " . $created_at . 'น.' . "\nเข้างานแบบ: " .
+                        $status . "\nหมายเหตุ: " . $note,
                 ],
             ]);
             return redirect()->back()->with('success', "บันทึกเข้างาน เรียบร้อยแล้ว.");
