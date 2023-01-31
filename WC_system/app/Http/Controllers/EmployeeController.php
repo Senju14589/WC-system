@@ -77,7 +77,7 @@ class EmployeeController extends Controller
             if ($created_at->format('H:i:s') < "08:30:00") {
                 $timecheck->note = "เข้าตรงเวลา";
             } else {
-                $timecheck->note = "มาสาย";
+                $timecheck->note = "เข้างานสาย";
             }
             $timecheck->save();
             // retrieve employee name
